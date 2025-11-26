@@ -18,23 +18,23 @@ export default function Categories() {
                 <p className="text-gray-500">Mauris quis ante elit. Sed rutrum auctor libero, in maximus finibus.</p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
                 {CATEGORIES.map((category) => (
                     <Link
                         key={category.name}
                         href="/catalog"
                         className="flex flex-col items-center group"
                     >
-                        <div className="relative w-32 h-32 rounded-full overflow-hidden bg-gradient-to-br from-pastel-pink/20 to-pastel-purple/20 mb-3 group-hover:shadow-lg group-hover:shadow-pastel-purple/30 transition-all group-hover:scale-105">
+                        <div className="relative w-36 h-36 rounded-full overflow-hidden bg-gray-100 mb-4 group-hover:ring-1 group-hover:ring-gray-300 transition-all">
                             <Image
                                 src={category.image}
                                 alt={category.name}
                                 fill
-                                className="object-cover"
+                                className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
                             />
                         </div>
-                        <h3 className="font-semibold text-gray-900 text-sm">{category.name}</h3>
-                        <p className="text-xs text-gray-500">{category.count}</p>
+                        <h3 className="font-medium text-gray-900 text-sm tracking-wide group-hover:text-black transition-colors">{category.name}</h3>
+                        <p className="text-xs text-gray-500 mt-1">{category.count}</p>
                     </Link>
                 ))}
             </div>

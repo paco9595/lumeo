@@ -9,27 +9,27 @@ export default function CheckoutPage() {
     const { items, removeFromCart, cartTotal } = useCart();
     const [paymentMethod, setPaymentMethod] = useState('credit');
 
-    const shipping = 0; // Free shipping
+    const shipping: number = 0; // Free shipping
     const total = cartTotal + shipping;
 
     return (
         <div className="min-h-screen py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {items.length === 0 ? (
-                    <div className="text-center py-12">
-                        <p className="text-gray-500 text-lg mb-6">Your cart is empty.</p>
-                        <Link href="/catalog" className="inline-block bg-gradient-to-r from-pastel-pink to-pastel-purple text-gray-900 px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
-                            Continue Shopping
+                    <div className="text-center py-24">
+                        <p className="text-gray-500 text-lg mb-8 font-light">Your cart is empty.</p>
+                        <Link href="/catalog" className="inline-block bg-black text-white px-8 py-4 text-sm font-medium tracking-widest hover:bg-gray-800 transition-all">
+                            CONTINUE SHOPPING
                         </Link>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         {/* Shopping Cart - Left Column */}
                         <div>
-                            <h1 className="text-3xl font-bold text-gray-900 mb-6">Shopping Cart.</h1>
+                            <h1 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Shopping Cart.</h1>
 
                             {/* Product Table Header */}
-                            <div className="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-gray-200 text-sm font-medium text-gray-600 mb-4">
+                            <div className="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-gray-200 text-xs font-medium text-gray-500 uppercase tracking-wider mb-6">
                                 <div className="col-span-5">Product</div>
                                 <div className="col-span-2">Size</div>
                                 <div className="col-span-2">Quantity</div>
@@ -38,12 +38,12 @@ export default function CheckoutPage() {
                             </div>
 
                             {/* Product List */}
-                            <div className="space-y-4 mb-6">
+                            <div className="space-y-6 mb-8">
                                 {items.map((item) => (
                                     <div key={item.id} className="grid grid-cols-12 gap-4 items-center py-4 border-b border-gray-100">
                                         {/* Product Info */}
-                                        <div className="col-span-12 md:col-span-5 flex items-center gap-3">
-                                            <div className="relative w-16 h-16 bg-gradient-to-br from-pastel-pink/20 to-pastel-purple/20 rounded-lg overflow-hidden flex-shrink-0">
+                                        <div className="col-span-12 md:col-span-5 flex items-center gap-4">
+                                            <div className="relative w-20 h-24 bg-gray-100 overflow-hidden flex-shrink-0">
                                                 <Image
                                                     src={item.image}
                                                     alt={item.name}
@@ -52,14 +52,14 @@ export default function CheckoutPage() {
                                                 />
                                             </div>
                                             <div>
-                                                <h3 className="font-semibold text-gray-900 text-sm">{item.name}</h3>
+                                                <h3 className="font-medium text-gray-900 text-sm mb-1">{item.name}</h3>
                                                 <p className="text-xs text-gray-500">${item.price.toFixed(2)}</p>
                                             </div>
                                         </div>
 
                                         {/* Size Selector */}
                                         <div className="col-span-6 md:col-span-2">
-                                            <select className="w-full px-2 py-1.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pastel-accent">
+                                            <select className="w-full px-2 py-2 bg-gray-50 border-none text-sm focus:outline-none focus:ring-1 focus:ring-black">
                                                 <option>35 L</option>
                                                 <option>30 L</option>
                                                 <option>25 L</option>
@@ -68,23 +68,23 @@ export default function CheckoutPage() {
 
                                         {/* Quantity Controls */}
                                         <div className="col-span-4 md:col-span-2">
-                                            <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-2 py-1">
-                                                <button className="text-gray-500 hover:text-gray-900 w-6 h-6 flex items-center justify-center">−</button>
-                                                <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
-                                                <button className="text-gray-500 hover:text-gray-900 w-6 h-6 flex items-center justify-center">+</button>
+                                            <div className="flex items-center gap-3 border border-gray-200 px-3 py-1.5 w-fit">
+                                                <button className="text-gray-400 hover:text-black transition-colors">−</button>
+                                                <span className="text-sm font-medium text-gray-900 w-4 text-center">{item.quantity}</span>
+                                                <button className="text-gray-400 hover:text-black transition-colors">+</button>
                                             </div>
                                         </div>
 
                                         {/* Total Price */}
                                         <div className="col-span-1 md:col-span-2">
-                                            <span className="font-semibold text-gray-900 text-sm">${(item.price * item.quantity).toFixed(2)}</span>
+                                            <span className="font-medium text-gray-900 text-sm">${(item.price * item.quantity).toFixed(2)}</span>
                                         </div>
 
                                         {/* Remove Button */}
                                         <div className="col-span-1 md:col-span-1 flex justify-end">
                                             <button
                                                 onClick={() => removeFromCart(item.id)}
-                                                className="text-gray-400 hover:text-red-500 transition-colors"
+                                                className="text-gray-300 hover:text-black transition-colors"
                                             >
                                                 ✕
                                             </button>
@@ -94,115 +94,103 @@ export default function CheckoutPage() {
                             </div>
 
                             {/* Cart Summary */}
-                            <div className="space-y-2 mb-6">
-                                <div className="flex justify-between text-gray-600">
-                                    <span>Subtotal:</span>
-                                    <span className="font-semibold">${cartTotal.toFixed(2)}</span>
+                            <div className="space-y-3 mb-8 bg-gray-50 p-6">
+                                <div className="flex justify-between text-sm text-gray-600">
+                                    <span>Subtotal</span>
+                                    <span className="font-medium">${cartTotal.toFixed(2)}</span>
                                 </div>
-                                <div className="flex justify-between text-gray-600">
-                                    <span>Shipping:</span>
-                                    <span className="font-semibold">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+                                <div className="flex justify-between text-sm text-gray-600">
+                                    <span>Shipping</span>
+                                    <span className="font-medium">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
                                 </div>
-                                <div className="flex justify-between text-xl font-bold text-gray-900 pt-2 border-t border-gray-200">
-                                    <span>Total:</span>
+                                <div className="flex justify-between text-lg font-bold text-gray-900 pt-4 border-t border-gray-200 mt-2">
+                                    <span>Total</span>
                                     <span>${total.toFixed(2)}</span>
                                 </div>
                             </div>
 
                             {/* Continue Shopping Link */}
-                            <Link href="/catalog" className="inline-flex items-center text-gray-600 hover:text-gray-900 text-sm font-medium">
+                            <Link href="/catalog" className="inline-flex items-center text-gray-500 hover:text-black text-sm font-medium transition-colors">
                                 <span className="mr-2">←</span>
                                 Continue Shopping
                             </Link>
                         </div>
 
                         {/* Payment Info - Right Column */}
-                        <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">Payment Info.</h2>
+                        <div className="bg-gray-50 p-8 h-fit">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Payment Info.</h2>
 
-                            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-pastel-purple/20">
+                            <div className="space-y-6">
                                 {/* Payment Method Accordion */}
-                                <div className="mb-6">
-                                    <label className="block text-sm font-medium text-gray-700 mb-3">Payment Method:</label>
+                                <div>
+                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Payment Method</label>
                                     <div className="space-y-3">
                                         {/* Credit Card Option */}
-                                        <div className="border border-pastel-purple/30 rounded-xl overflow-hidden">
+                                        <div className="bg-white border border-gray-200 overflow-hidden">
                                             <button
                                                 onClick={() => setPaymentMethod('credit')}
-                                                className={`w-full flex items-center justify-between p-4 transition-colors ${paymentMethod === 'credit' ? 'bg-pastel-purple/10' : 'bg-white/50 hover:bg-pastel-purple/5'
-                                                    }`}
+                                                className="w-full flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition-colors"
                                             >
                                                 <div className="flex items-center gap-3">
-                                                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'credit' ? 'border-pastel-accent' : 'border-gray-300'
+                                                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === 'credit' ? 'border-black' : 'border-gray-300'
                                                         }`}>
                                                         {paymentMethod === 'credit' && (
-                                                            <div className="w-2.5 h-2.5 rounded-full bg-pastel-accent"></div>
+                                                            <div className="w-2 h-2 rounded-full bg-black"></div>
                                                         )}
                                                     </div>
-                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                                    </svg>
-                                                    <span className="font-medium text-gray-900">Credit Card</span>
+                                                    <span className="font-medium text-gray-900 text-sm">Credit Card</span>
                                                 </div>
-                                                <svg
-                                                    className={`w-5 h-5 transition-transform ${paymentMethod === 'credit' ? 'rotate-180' : ''}`}
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                                </svg>
                                             </button>
 
                                             {/* Credit Card Form - Expandable */}
                                             <div className={`transition-all duration-300 ease-in-out ${paymentMethod === 'credit' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
                                                 }`}>
-                                                <div className="p-4 pt-2 space-y-4 bg-white/30">
+                                                <div className="p-4 pt-0 space-y-4 border-t border-gray-100">
                                                     {/* Name on Card */}
                                                     <div>
-                                                        <label className="block text-sm font-medium text-gray-700 mb-2">Name On Card:</label>
+                                                        <label className="block text-xs font-medium text-gray-500 mb-1.5">Name On Card</label>
                                                         <input
                                                             type="text"
                                                             placeholder="John Carter"
-                                                            className="w-full px-4 py-2.5 bg-white border border-pastel-purple/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-pastel-accent"
+                                                            className="w-full px-3 py-2 bg-gray-50 border-none focus:ring-1 focus:ring-black text-sm"
                                                         />
                                                     </div>
 
                                                     {/* Card Number */}
                                                     <div>
-                                                        <label className="block text-sm font-medium text-gray-700 mb-2">Card Number:</label>
+                                                        <label className="block text-xs font-medium text-gray-500 mb-1.5">Card Number</label>
                                                         <input
                                                             type="text"
                                                             placeholder="•••• •••• •••• 2153"
-                                                            className="w-full px-4 py-2.5 bg-white border border-pastel-purple/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-pastel-accent"
+                                                            className="w-full px-3 py-2 bg-gray-50 border-none focus:ring-1 focus:ring-black text-sm"
                                                         />
                                                     </div>
 
                                                     {/* Expiration and CVV */}
                                                     <div className="grid grid-cols-3 gap-3">
                                                         <div>
-                                                            <label className="block text-sm font-medium text-gray-700 mb-2">Month:</label>
-                                                            <select className="w-full px-3 py-2.5 bg-white border border-pastel-purple/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-pastel-accent">
+                                                            <label className="block text-xs font-medium text-gray-500 mb-1.5">Month</label>
+                                                            <select className="w-full px-3 py-2 bg-gray-50 border-none focus:ring-1 focus:ring-black text-sm">
                                                                 <option>05</option>
                                                                 <option>06</option>
                                                                 <option>07</option>
                                                             </select>
                                                         </div>
                                                         <div>
-                                                            <label className="block text-sm font-medium text-gray-700 mb-2">Year:</label>
-                                                            <select className="w-full px-3 py-2.5 bg-white border border-pastel-purple/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-pastel-accent">
+                                                            <label className="block text-xs font-medium text-gray-500 mb-1.5">Year</label>
+                                                            <select className="w-full px-3 py-2 bg-gray-50 border-none focus:ring-1 focus:ring-black text-sm">
                                                                 <option>2024</option>
                                                                 <option>2025</option>
                                                                 <option>2026</option>
                                                             </select>
                                                         </div>
                                                         <div>
-                                                            <label className="block text-sm font-medium text-gray-700 mb-2">CVV:</label>
+                                                            <label className="block text-xs font-medium text-gray-500 mb-1.5">CVV</label>
                                                             <input
                                                                 type="text"
                                                                 placeholder="156"
                                                                 maxLength={3}
-                                                                className="w-full px-3 py-2.5 bg-white border border-pastel-purple/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-pastel-accent"
+                                                                className="w-full px-3 py-2 bg-gray-50 border-none focus:ring-1 focus:ring-black text-sm"
                                                             />
                                                         </div>
                                                     </div>
@@ -211,44 +199,29 @@ export default function CheckoutPage() {
                                         </div>
 
                                         {/* PayPal Option */}
-                                        <div className="border border-pastel-purple/30 rounded-xl overflow-hidden">
+                                        <div className="bg-white border border-gray-200 overflow-hidden">
                                             <button
                                                 onClick={() => setPaymentMethod('paypal')}
-                                                className={`w-full flex items-center justify-between p-4 transition-colors ${paymentMethod === 'paypal' ? 'bg-pastel-purple/10' : 'bg-white/50 hover:bg-pastel-purple/5'
-                                                    }`}
+                                                className="w-full flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition-colors"
                                             >
                                                 <div className="flex items-center gap-3">
-                                                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'paypal' ? 'border-pastel-accent' : 'border-gray-300'
+                                                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${paymentMethod === 'paypal' ? 'border-black' : 'border-gray-300'
                                                         }`}>
                                                         {paymentMethod === 'paypal' && (
-                                                            <div className="w-2.5 h-2.5 rounded-full bg-pastel-accent"></div>
+                                                            <div className="w-2 h-2 rounded-full bg-black"></div>
                                                         )}
                                                     </div>
-                                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                                        <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .76-.653h8.53c2.347 0 4.203.645 5.072 1.87.5.708.734 1.57.734 2.71 0 3.28-2.114 5.52-5.26 5.52h-2.88a.77.77 0 0 0-.76.653l-.797 5.053a.641.641 0 0 1-.633.653z" />
-                                                    </svg>
-                                                    <span className="font-medium text-gray-900">PayPal</span>
+                                                    <span className="font-medium text-gray-900 text-sm">PayPal</span>
                                                 </div>
-                                                <svg
-                                                    className={`w-5 h-5 transition-transform ${paymentMethod === 'paypal' ? 'rotate-180' : ''}`}
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                                </svg>
                                             </button>
 
                                             {/* PayPal Content - Expandable */}
                                             <div className={`transition-all duration-300 ease-in-out ${paymentMethod === 'paypal' ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
                                                 }`}>
-                                                <div className="p-4 pt-2 bg-white/30">
-                                                    <p className="text-sm text-gray-600 mb-4">
+                                                <div className="p-4 pt-0 border-t border-gray-100">
+                                                    <p className="text-xs text-gray-500 leading-relaxed">
                                                         You will be redirected to PayPal to complete your purchase securely.
                                                     </p>
-                                                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
-                                                        💡 PayPal offers buyer protection and secure payment processing.
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,7 +229,7 @@ export default function CheckoutPage() {
                                 </div>
 
                                 {/* Check Out Button */}
-                                <button className="w-full bg-gradient-to-r from-pastel-pink to-pastel-purple text-gray-900 py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-pastel-purple/30 transition-all hover:scale-105">
+                                <button className="w-full bg-black text-white py-4 font-bold text-sm uppercase tracking-widest hover:bg-gray-800 transition-all">
                                     Check Out
                                 </button>
                             </div>

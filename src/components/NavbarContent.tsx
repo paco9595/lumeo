@@ -27,7 +27,7 @@ export default function NavbarContent({ session }: NavbarContentProps) {
     ];
 
     return (
-        <nav className="sticky top-0 z-40 w-full backdrop-blur-md  border-b border-pastel-purple/20 transition-all duration-300">
+        <nav className="sticky top-0 z-40 w-full  backdrop-blur-md border-b border-gray-100 transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
