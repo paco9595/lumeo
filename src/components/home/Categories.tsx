@@ -2,23 +2,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const CATEGORIES = [
-    { name: 'Watch', count: '8 Products', image: 'https://placehold.co/200x200/png?text=Watch' },
-    { name: 'Fashionable', count: '12 Products', image: 'https://placehold.co/200x200/png?text=Fashion' },
-    { name: 'Ethnic Wear', count: '6 Products', image: 'https://placehold.co/200x200/png?text=Ethnic' },
-    { name: 'Goggles', count: '4 Products', image: 'https://placehold.co/200x200/png?text=Goggles' },
-    { name: 'Tote Bag', count: '9 Products', image: 'https://placehold.co/200x200/png?text=Bag' },
-    { name: 'Shoes', count: '11 Products', image: 'https://placehold.co/200x200/png?text=Shoes' },
+    { name: 'Stickers', count: '50+ Designs', image: 'https://placehold.co/200x200/png?text=Stickers' },
+    { name: 'Cake Toppers', count: '30+ Designs', image: 'https://placehold.co/200x200/png?text=Toppers' },
+    { name: 'T-Shirts', count: '25+ Designs', image: 'https://placehold.co/200x200/png?text=Tshirts' },
+    { name: 'Custom', count: 'Your Design', image: 'https://placehold.co/200x200/png?text=Custom' },
 ];
 
 export default function Categories() {
     return (
         <section className="py-12">
             <div className="text-center mb-10">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Best For Your Categories</h2>
-                <p className="text-gray-500">Mauris quis ante elit. Sed rutrum auctor libero, in maximus finibus.</p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Our Categories</h2>
+                <p className="text-gray-500">Discover our wide variety of custom products</p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
                 {CATEGORIES.map((category) => (
                     <Link
                         key={category.name}

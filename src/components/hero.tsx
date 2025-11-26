@@ -10,16 +10,16 @@ export default function Hero() {
           <div className="md:w-1/2 text-center md:text-left space-y-8">
             <p className="text-sm font-medium text-gray-500 uppercase tracking-[0.2em]">New Collection 2025</p>
             <h1 className="text-5xl md:text-7xl font-bold text-primary leading-tight tracking-tight">
-              Minimalist <br /> <span className="text-gray-400">Elegance</span>
+              Custom <br /> <span className="text-gray-400">Products</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-lg mx-auto md:mx-0 font-light leading-relaxed">
-              Discover our exclusive collection of premium styles designed to elevate your wardrobe with timeless simplicity.
+              Discover our exclusive collection of custom stickers, unique cake toppers, and personalized t-shirts. Design unique products that reflect your style.
             </p>
             <Link
               href="/catalog"
               className="inline-block bg-primary text-white px-10 py-4 rounded-none font-medium hover:bg-gray-800 transition-all hover:shadow-xl text-sm tracking-widest"
             >
-              SHOP COLLECTION
+              SHOP CATALOG
             </Link>
           </div>
 
@@ -27,8 +27,8 @@ export default function Hero() {
           <div className="md:w-1/2 relative">
             <div className="relative w-full h-[500px] md:h-[600px]">
               <Image
-                src="https://placehold.co/600x800/png?text=Fashion+Model"
-                alt="Hero Fashion"
+                src="https://placehold.co/600x800/png?text=Custom+Products"
+                alt="Custom Products"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 priority

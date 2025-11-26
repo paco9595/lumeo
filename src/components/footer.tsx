@@ -11,7 +11,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-white">L</span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
-              Elevating your everyday style with timeless minimalist designs. Quality craftsmanship meets modern aesthetics.
+              We create unique custom products for you. Stickers, cake toppers, and t-shirts with designs that reflect your personal style.
             </p>
           </div>
 
@@ -19,10 +19,10 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-gray-900 mb-6 uppercase tracking-wider text-xs">Shop</h4>
             <ul className="space-y-4 text-sm text-gray-500">
-              <li><Link href="/catalog" className="hover:text-black transition-colors">New Arrivals</Link></li>
-              <li><Link href="/catalog" className="hover:text-black transition-colors">Best Sellers</Link></li>
-              <li><Link href="/catalog" className="hover:text-black transition-colors">Accessories</Link></li>
-              <li><Link href="/catalog" className="hover:text-black transition-colors">Sale</Link></li>
+              <li><Link href="/catalog" className="hover:text-black transition-colors">Custom Stickers</Link></li>
+              <li><Link href="/catalog" className="hover:text-black transition-colors">Cake Toppers</Link></li>
+              <li><Link href="/catalog" className="hover:text-black transition-colors">Custom T-Shirts</Link></li>
+              <li><Link href="/catalog" className="hover:text-black transition-colors">Special Offers</Link></li>
             </ul>
           </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
             <h4 className="font-bold text-gray-900 mb-6 uppercase tracking-wider text-xs">Help</h4>
             <ul className="space-y-4 text-sm text-gray-500">
               <li><Link href="#" className="hover:text-black transition-colors">Shipping & Returns</Link></li>
-              <li><Link href="#" className="hover:text-black transition-colors">Size Guide</Link></li>
+              <li><Link href="#" className="hover:text-black transition-colors">Design Guide</Link></li>
               <li><Link href="#" className="hover:text-black transition-colors">FAQ</Link></li>
               <li><Link href="#" className="hover:text-black transition-colors">Contact Us</Link></li>
             </ul>
@@ -40,7 +40,7 @@ export default function Footer() {
           {/* Newsletter Column */}
           <div>
             <h4 className="font-bold text-gray-900 mb-6 uppercase tracking-wider text-xs">Newsletter</h4>
-            <p className="text-gray-500 text-sm mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+            <p className="text-gray-500 text-sm mb-4">Subscribe to receive updates, exclusive offers, and more.</p>
             <form className="flex flex-col gap-3">
               <input
                 type="email"
