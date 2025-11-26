@@ -42,7 +42,7 @@ export default function FeaturedCards() {
                             <p className="text-xs font-medium uppercase tracking-[0.2em] mb-3 opacity-90">{item.tag}</p>
                             <h3 className="text-2xl font-light mb-6">{item.title}</h3>
                             <Link
-                                href="/catalog"
+                                href={`/product/${item.id}`}
                                 className="inline-block border-b border-white pb-1 text-sm font-medium hover:text-gray-200 transition-colors opacity-0 group-hover:opacity-100 duration-500 delay-100"
                             >
                                 SHOP NOW

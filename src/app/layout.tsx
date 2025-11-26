@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import FooterWrapper from "@/components/FooterWrapper";
 import { CartProvider } from "@/context/CartContext";
 import CartSidebar from "@/components/cart/CartSidebar";
 import { auth } from "@/auth";
@@ -40,7 +40,7 @@ export default async function RootLayout({
           <div className="flex-1">
             {children}
           </div>
-          <Footer />
+          <FooterWrapper />
         </CartProvider>
       </body>
     </html>
