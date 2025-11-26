@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getProductById, getRelatedProducts } from '@/lib/products';
 import ProductInfo from '@/components/product/ProductInfo';
 import ProductCard from '@/components/catalog/ProductCard';
+import Link from 'next/link';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -22,11 +23,11 @@ export default async function ProductPage({ params }: PageProps) {
       <div className="container mx-auto px-6">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-500 mb-8">
-          <a href="/" className="hover:text-black transition-colors">Home</a>
+          <Link href="/" className="hover:text-black transition-colors">Home</Link>
           <span className="mx-2">/</span>
-          <a href="/catalog" className="hover:text-black transition-colors">Catalog</a>
+          <Link href="/catalog" className="hover:text-black transition-colors">Catalog</Link>
           <span className="mx-2">/</span>
-          <span className="text-black">{product.name}</span>
+          <Link href={`/product/${product.id}`} className="hover:text-black transition-colors">{product.name}</Link>
         </div>
 
         {/* Main Product Info */}
