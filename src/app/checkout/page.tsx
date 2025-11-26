@@ -25,7 +25,7 @@ export default function CheckoutPage() {
                 ) : (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         {/* Shopping Cart - Left Column */}
-                        <div>
+                        <div className="bg-white p-6 md:p-8 shadow-sm border border-gray-100">
                             <h1 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Shopping Cart.</h1>
 
                             {/* Product Table Header */}
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
                         </div>
 
                         {/* Payment Info - Right Column */}
-                        <div className="bg-gray-50 p-8 h-fit">
+                        <div className="bg-white p-8 h-fit shadow-sm border border-gray-100">
                             <h2 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Payment Info.</h2>
 
                             <div className="space-y-6">
