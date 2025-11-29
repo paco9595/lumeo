@@ -1,4 +1,3 @@
-import { CartItemWithProduct } from '@/types/Product';
 import { createBrowserClient } from './createBrowserClient';
 import type { CartItem } from '@/context/CartContext';
 
