@@ -4,13 +4,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import CartButton from './cart/CartButton';
-import { Session } from 'next-auth';
+import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/nextjs';
 
-interface NavbarContentProps {
-    session: Session | null;
-}
-
-export default function NavbarContent({ session }: NavbarContentProps) {
+export default function NavbarContent() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
@@ -57,19 +53,23 @@ export default function NavbarContent({ session }: NavbarContentProps) {
                                 <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                             </Link>
                         ))}
-                        {!session && (
-                            <Link
-                                href="/login"
-                                className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
-                            >
-                                Login
-                            </Link>
-                        )}
                     </div>
 
                     {/* Actions (Cart & Mobile Menu) */}
                     <div className="flex items-center gap-4">
                         <CartButton />
+
+                        {/* Clerk Auth Components */}
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                        <SignedOut>
+                            <SignInButton mode="modal">
+                                <button className="text-sm font-medium text-gray-600 hover:text-black transition-colors">
+                                    Sign In
+                                </button>
+                            </SignInButton>
+                        </SignedOut>
 
                         {/* Mobile Menu Button */}
                         <button
@@ -108,15 +108,21 @@ export default function NavbarContent({ session }: NavbarContentProps) {
                             {link.label}
                         </Link>
                     ))}
-                    {!session && (
-                        <Link
-                            href="/login"
-                            onClick={closeMobileMenu}
-                            className="block px-3 py-4 rounded-lg text-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
-                        >
-                            Login
-                        </Link>
-                    )}
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <button
+                                onClick={closeMobileMenu}
+                                className="block w-full text-left px-3 py-4 rounded-lg text-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+                            >
+                                Sign In
+                            </button>
+                        </SignInButton>
+                    </SignedOut>
+                    <SignedIn>
+                        <div className="px-3 py-4">
+                            <UserButton afterSignOutUrl="/" />
+                        </div>
+                    </SignedIn>
                 </div>
             </div>
         </nav>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from '@clerk/nextjs';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import FooterWrapper from "@/components/FooterWrapper";
 import { CartProvider } from "@/context/CartContext";
 import CartSidebar from "@/components/cart/CartSidebar";
-import { auth } from "@/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -74,30 +74,30 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-
   return (
-    <html lang="en">
-      <head>
-        <link rel="canonical" href="https://lumeo.com" />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-8xl mx-auto flex flex-col h-screen`}
-      >
-        <CartProvider session={session}>
-          <Navbar />
-          <CartSidebar />
-          <div className="flex-1">
-            {children}
-          </div>
-          <FooterWrapper />
-        </CartProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link rel="canonical" href="https://lumeo.com" />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-8xl mx-auto flex flex-col h-screen`}
+        >
+          <CartProvider>
+            <Navbar />
+            <CartSidebar />
+            <div className="flex-1">
+              {children}
+            </div>
+            <FooterWrapper />
+          </CartProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

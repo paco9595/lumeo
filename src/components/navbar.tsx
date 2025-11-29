@@ -1,8 +1,5 @@
-import { auth } from "@/auth";
 import NavbarContent from "./NavbarContent";
 
-export default async function Navbar() {
-  const session = await auth();
-
-  return <NavbarContent session={session} />;
+export default function Navbar() {
+  return <NavbarContent />;
 }

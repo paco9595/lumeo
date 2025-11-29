@@ -43,7 +43,7 @@ export default function FilterSidebar() {
         const queryString = params.toString();
         const newUrl = queryString ? `/catalog?${queryString}` : '/catalog';
 
-        router.push(newUrl, { scroll: false });
+        router.replace(newUrl, { scroll: false });
     }, [selectedCategories, priceRange, sortBy, router]);
 
     const handleCategoryChange = (category: string) => {
@@ -61,7 +61,7 @@ export default function FilterSidebar() {
             <div className="mb-8">
                 <h3 className="font-medium text-gray-900 mb-4 text-sm uppercase tracking-wider">Categories</h3>
                 <div className="space-y-3">
-                    {['All Products', 'Stickers', 'Cake Toppers', 'T-Shirts', 'Custom'].map((category) => (
+                    {['Boxes', 'Buttles', 'Cake Toppers', 'Stickers', 'T-Shirts'].map((category) => (
                         <label key={category} className="flex items-center gap-3 cursor-pointer group">
                             <div className="relative flex items-center">
                                 <input

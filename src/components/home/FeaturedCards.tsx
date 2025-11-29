@@ -4,21 +4,21 @@ import Link from 'next/link';
 const FEATURED = [
     {
         id: 1,
-        tag: 'DEAL FASHIONS',
-        title: 'Lacoste Men Blue T-shirt',
-        image: 'https://placehold.co/400x500/png?text=Blue+Tshirt',
+        tag: 'Cake Toppers',
+        title: 'K-pop artist',
+        image: 'https://fmjxrdhqiklcgglddpme.supabase.co/storage/v1/object/public/lumeo_products/IMG_0335.jpg',
     },
     {
         id: 2,
-        tag: 'STYLISH SHOES',
-        title: 'Saletheworld Women Sneakers Shoes',
-        image: 'https://placehold.co/400x500/png?text=Sneakers',
+        tag: 'Halloween decoration',
+        title: 'spooky buttle',
+        image: 'https://fmjxrdhqiklcgglddpme.supabase.co/storage/v1/object/public/lumeo_products/IMG_0039.jpg',
     },
     {
         id: 3,
-        tag: 'HANDMADE FASHION',
-        title: 'Saletheworld Beige Small Bag',
-        image: 'https://placehold.co/400x500/png?text=Bag',
+        tag: 'candy box',
+        title: 'cath all the candys',
+        image: 'https://fmjxrdhqiklcgglddpme.supabase.co/storage/v1/object/public/lumeo_products/IMG_0313.jpg',
     },
 ];
 
