@@ -2,7 +2,7 @@
 
 import { useCart } from '@/context/CartContext';
 
-export default function CartButton() {
+export function CartButton() {
     const { cartCount, toggleCart } = useCart();
 
     return (

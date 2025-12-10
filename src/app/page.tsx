@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Hero from "@/components/hero";
 // import Categories from "@/components/home/Categories";
 import FeaturedCards from "@/components/home/FeaturedCards";
-import BestSellers from "@/components/home/BestSellers";
-import Features from "@/components/home/Features";
+import { BestSellers } from "@/components/home/BestSellers";
+import { Features } from "@/components/home/Features";
 
 export const metadata: Metadata = {
   title: "Inicio - Diseña Tus Productos Personalizados",

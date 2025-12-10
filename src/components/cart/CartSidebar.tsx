@@ -1,11 +1,18 @@
 'use client';
 
 import { useCart } from '@/context/CartContext';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function CartSidebar() {
-    const { items, isOpen, toggleCart, removeFromCart, cartTotal } = useCart();
+export function CartSidebar() {
+    const { items, isOpen, toggleCart, removeFromCart, updateQuantity, cartTotal } = useCart();
+    const pathname = usePathname();
+
+    // Don't show cart sidebar on admin routes
+    if (pathname?.startsWith('/admin')) {
+        return null;
+    }
 
     return (
         <>
@@ -41,7 +48,7 @@ export default function CartSidebar() {
                             </div>
                         ) : (
                             items.map((item) => (
-                                <div key={item.id} className="flex gap-4">
+                                <div key={`${item.id}-${item.variantId || 'default'}`} className="flex gap-4">
                                     <div className="relative w-20 h-20 flex-shrink-0 bg-gray-50 rounded-lg overflow-hidden">
                                         <Image
                                             src={item.image}
@@ -52,13 +59,33 @@ export default function CartSidebar() {
                                     </div>
                                     <div className="flex-1 flex flex-col justify-between">
                                         <div>
-                                            <h3 className="font-medium text-gray-900 line-clamp-1">{item.name}</h3>
-                                            <p className="text-gray-500 text-sm">Qty: {item.quantity}</p>
+                                            <h3 className="font-medium text-gray-900 line-clamp-1 mb-1">{item.name}</h3>
+                                            {item.variantName && (
+                                                <p className="text-sm text-gray-500 mb-1">{item.variantName}</p>
+                                            )}
+                                            <div className="flex items-center border border-gray-200 rounded-lg w-fit">
+                                                <button
+                                                    onClick={() => updateQuantity(item.id, item.quantity - 1, item.variantId)}
+                                                    className="px-2 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 text-sm"
+                                                    disabled={item.quantity <= 1}
+                                                >
+                                                    -
+                                                </button>
+                                                <span className="px-2 py-1 text-sm text-gray-900 w-8 text-center border-x border-gray-200">
+                                                    {item.quantity}
+                                                </span>
+                                                <button
+                                                    onClick={() => updateQuantity(item.id, item.quantity + 1, item.variantId)}
+                                                    className="px-2 py-1 text-gray-600 hover:bg-gray-100 text-sm"
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
                                         </div>
                                         <div className="flex justify-between items-center">
                                             <span className="font-semibold text-gray-900">${(item.price * item.quantity).toFixed(2)}</span>
                                             <button
-                                                onClick={() => removeFromCart(item.id)}
+                                                onClick={() => removeFromCart(item.id, item.variantId)}
                                                 className="text-red-500 text-sm hover:text-red-600 font-medium"
                                             >
                                                 Remove

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from '@clerk/nextjs';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import FooterWrapper from "@/components/FooterWrapper";
+import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
-import CartSidebar from "@/components/cart/CartSidebar";
+import { CartSidebar } from "@/components/cart/CartSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,14 +80,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <head>
-          <link rel="canonical" href="https://lumeo.com" />
-        </head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-8xl mx-auto flex flex-col h-screen`}
-        >
+    <html lang="en">
+      <head>
+        <link rel="canonical" href="https://lumeo.com" />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-8xl mx-auto flex flex-col h-screen`}
+      >
+        <AuthProvider>
           <CartProvider>
             <Navbar />
             <CartSidebar />
@@ -96,8 +96,8 @@ export default function RootLayout({
             </div>
             <FooterWrapper />
           </CartProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }

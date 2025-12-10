@@ -1,4 +1,4 @@
-export default function Features() {
+export function Features() {
     const features = [
         {
             icon: '🚚',

@@ -33,7 +33,7 @@ const BEST_SELLERS = [
     }
 ];
 
-export default function BestSellers() {
+export function BestSellers() {
     return (
         <section className="py-16">
             <div className="text-center mb-12">

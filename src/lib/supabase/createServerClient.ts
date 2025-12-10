@@ -1,13 +1,13 @@
-import { Database } from '@/types/supabase'
-import { createServerClient } from '@supabase/ssr'
+import { createServerClient as createSupabaseServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { Database } from '../database.types'
 
-export async function createClient(serviceRole: boolean = false) {
+export async function createServerClient(serviceRole: boolean = false) {
+    // Regular server client with cookies
     const cookieStore = await cookies()
-
-    return createServerClient<Database>(
+    return createSupabaseServerClient<Database>(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        serviceRole ? process.env.SUPABASE_SERVICE_ROLE_KEY! : process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
+        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE!,
         {
             cookies: {
                 getAll() {
@@ -28,3 +28,6 @@ export async function createClient(serviceRole: boolean = false) {
         }
     )
 }
+
+// Alias for backward compatibility
+export const createClient = createServerClient

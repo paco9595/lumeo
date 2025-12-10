@@ -3,7 +3,7 @@ import ProductGrid from '@/components/catalog/ProductGrid';
 
 const DUMMY_PRODUCTS = [
   {
-    id: '1',
+    id: '46062169-4f26-484c-aa8c-afb2b970c58c',
     name: 'Minimalist Leather Watch',
     price: 129.99,
     image: 'https://placehold.co/600x600/png',
