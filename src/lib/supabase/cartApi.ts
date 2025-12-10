@@ -108,7 +108,7 @@ export async function getCartItems(cartId: string) {
  * Add or update an item in the cart
  */
 export async function addCartItem(cartId: string, { id, quantity, variantId }: CartItem) {
-    const supabase = await createClient(true);
+    const supabase = await createClient();
 
     // Check if item already exists
     let query = supabase
@@ -157,7 +157,7 @@ export async function addCartItem(cartId: string, { id, quantity, variantId }: C
  * Update cart item quantity
  */
 export async function updateCartItemQuantity(cartId: string, productId: string, quantity: number, variantId?: string | null) {
-    const supabase = await createClient(true);
+    const supabase = await createClient();
 
     let query = supabase
         .from('cart_items')
@@ -180,7 +180,7 @@ export async function updateCartItemQuantity(cartId: string, productId: string, 
  * Remove an item from the cart
  */
 export async function removeCartItem(cartId: string, productId: string, variantId?: string | null) {
-    const supabase = await createClient(true);
+    const supabase = await createClient();
     let removeCart = null;
 
     let query = supabase
@@ -239,7 +239,7 @@ export async function syncLocalCartToSupabase(userId: string, localItems: CartIt
  * Clear all items from a cart
  */
 export async function clearCart(cartId: string) {
-    const supabase = await createClient(true);
+    const supabase = await createClient();
     const { error } = await supabase
         .from('cart_items')
         .delete()
