@@ -20,12 +20,6 @@
   --color-border: #E5E5E5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #F2F0F2;
-  }
-}
 
 body {
   background: var(--background);

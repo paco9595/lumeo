@@ -1,15 +1,16 @@
-'use client';
-
-import { useState } from 'react';
+'use client'
+import { useState, Suspense } from 'react';
 import { createBrowserClient } from '@/lib/supabase/createBrowserClient';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function SignInPage() {
+function SignInContent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const redirectUrl = searchParams.get('redirect') || '/';
     const supabase = createBrowserClient();
 
     const handleEmailSignIn = async (e: React.FormEvent) => {
@@ -26,7 +27,8 @@ export default function SignInPage() {
             setError(error.message);
             setLoading(false);
         } else {
-            router.push('/');
+            router.push(redirectUrl);
+            router.refresh(); // Ensure state updates
         }
     };
 
@@ -37,7 +39,7 @@ export default function SignInPage() {
         const { error } = await supabase.auth.signInWithOAuth({
             provider,
             options: {
-                redirectTo: `${window.location.origin}/auth/callback`,
+                redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(redirectUrl)}`,
             },
         });
 
@@ -159,5 +161,13 @@ export default function SignInPage() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function SignInPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SignInContent />
+        </Suspense>
     );
 }
