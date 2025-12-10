@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
-import { Product, ProductVariant } from '@/lib/products';
+import { Product } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import QuantitySelector from './QuantitySelector';
 
@@ -130,8 +130,8 @@ export default function ProductInfo({ product }: { product: Product }) {
                                     key={val.id}
                                     onClick={() => handleOptionChange(option.name, val.value)}
                                     className={`px-4 py-2 text-sm font-medium transition-all ${selectedOptions[option.name] === val.value
-                                            ? 'bg-black text-white'
-                                            : 'bg-white text-gray-900 border border-gray-200 hover:border-black'
+                                        ? 'bg-black text-white'
+                                        : 'bg-white text-gray-900 border border-gray-200 hover:border-black'
                                         }`}
                                 >
                                     {val.value}

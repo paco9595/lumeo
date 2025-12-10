@@ -46,7 +46,7 @@ export async function createCart(userId: string) {
  * Get all items in a cart with product details
  */
 export async function getCartItems(cartId: string) {
-    const supabase = await createClient(true);
+    const supabase = await createClient();
     const { data, error } = await supabase.from('cart_items')
         .select(`
             id,
