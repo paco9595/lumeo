@@ -48,11 +48,11 @@ export function CartSidebar() {
                             </div>
                         ) : (
                             items.map((item) => (
-                                <div key={`${item.id}-${item.variantId || 'default'}`} className="flex gap-4">
+                                <div key={`${item.id}-${item.variant_id || 'default'}`} className="flex gap-4">
                                     <div className="relative w-20 h-20 flex-shrink-0 bg-gray-50 rounded-lg overflow-hidden">
                                         <Image
-                                            src={item.image}
-                                            alt={item.name}
+                                            src={item.product_images?.[0].image_url || ''}
+                                            alt={item.name || 'Product Image'}
                                             fill
                                             className="object-cover"
                                         />
@@ -60,12 +60,12 @@ export function CartSidebar() {
                                     <div className="flex-1 flex flex-col justify-between">
                                         <div>
                                             <h3 className="font-medium text-gray-900 line-clamp-1 mb-1">{item.name}</h3>
-                                            {item.variantName && (
+                                            {/* {item.variantName && (
                                                 <p className="text-sm text-gray-500 mb-1">{item.variantName}</p>
-                                            )}
+                                            )} */}
                                             <div className="flex items-center border border-gray-200 rounded-lg w-fit">
                                                 <button
-                                                    onClick={() => updateQuantity(item.id, item.quantity - 1, item.variantId)}
+                                                    onClick={() => updateQuantity(item.id, item.quantity - 1, item.variant_id)}
                                                     className="px-2 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 text-sm"
                                                     disabled={item.quantity <= 1}
                                                 >
@@ -75,7 +75,7 @@ export function CartSidebar() {
                                                     {item.quantity}
                                                 </span>
                                                 <button
-                                                    onClick={() => updateQuantity(item.id, item.quantity + 1, item.variantId)}
+                                                    onClick={() => updateQuantity(item.id, item.quantity + 1, item.variant_id)}
                                                     className="px-2 py-1 text-gray-600 hover:bg-gray-100 text-sm"
                                                 >
                                                     +
@@ -83,9 +83,9 @@ export function CartSidebar() {
                                             </div>
                                         </div>
                                         <div className="flex justify-between items-center">
-                                            <span className="font-semibold text-gray-900">${(item.price * item.quantity).toFixed(2)}</span>
+                                            <span className="font-semibold text-gray-900">${((item?.variant_price || 1) * item.quantity).toFixed(2)}</span>
                                             <button
-                                                onClick={() => removeFromCart(item.id, item.variantId)}
+                                                onClick={() => removeFromCart(item.id, item.variant_id)}
                                                 className="text-red-500 text-sm hover:text-red-600 font-medium"
                                             >
                                                 Remove

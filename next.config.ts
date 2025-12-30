@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'fmjxrdhqiklcgglddpme.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ishopmx.vtexassets.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mixupmx.vtexassets.com',
       }
     ],
   },

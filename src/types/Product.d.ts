@@ -1,55 +1,30 @@
-export type Profile = {
-    id: string;
-    email: string;
-    first_name: string | null;
-    last_name: string | null;
-    image_url: string | null;
-    created_at: string;
+import type { Database } from "@/lib/database.types";
+
+type ProductRow = Database['public']['Tables']['products']['Row'];
+type ProductImageRow = Database['public']['Tables']['product_images']['Row'];
+type ProductRelatedRow = Database['public']['Tables']['product_related']['Row'];
+type ProductCategoryRow = Database['public']['Tables']['product_categories']['Row'];
+type ProductVariantRow = Database['public']['Tables']['product_variants']['Row'];
+type CategoryRow = Database['public']['Tables']['categories']['Row'];
+
+
+export type ProductVariantSummary = Database['public']['Views']['product_variants_summary_1']['Row'];
+
+export type ProductWithImages = Pick<ProductRow, 'id' | 'name' | 'price'> & {
+    product_images: ProductImageRow[];
 };
 
-export type Product = {
-    id: number;
-    name: string;
-    description: string | null;
-    price: number;
-    image_url: string | null;
-    stock: number;
-    category_id: number | null;
-    created_at: string;
-    updated_at: string;
+type ProductVariant = ProductVariantRow & {
+    product_variant_options?: Record<string, string>;
 };
 
-export type Category = {
-    id: number;
-    name: string;
-    slug: string;
-    created_at: string;
-};
-
-export type Cart = {
-    id: number;
-    user_id: string;
-    created_at: string;
-};
-
-export type CartItem = {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
-    quantity: number;
-    cart_id: number;
-    product_id: number;
-};
-
-export type CartItemWithProduct = {
-    id: number;
-    quantity: number;
-    product_id: number;
-    products: {
-        id: number;
-        name: string;
-        price: number;
-        image_url: string | null;
-    } | null; // puede ser null si la relación falla
+export type Product = Omit<ProductVariantSummary, 'categories'> & {
+    categories: CategoryRow[] | null;
+    // Join con product_id
+    product_images?: ProductImageRow[];
+    // Join con related_product_id
+    related_product?: ProductWithImages[];
+    // Join con variant_id
+    product_options?: Record<string, string[]>
+    product_variants?: ProductVariant[]
 };

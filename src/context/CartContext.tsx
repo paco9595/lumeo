@@ -11,17 +11,9 @@ import {
     syncLocalCartToSupabase,
     createCart,
 } from '@/lib/supabase/cartApi';
+import { CartItem } from '@/types/cart';
 
-export interface CartItem {
-    id: string; // Product ID
-    name: string;
-    price: number;
-    image: string;
-    quantity: number;
-    stock?: number;
-    variantId?: string | null;
-    variantName?: string | null;
-}
+
 
 interface CartContextType {
     items: CartItem[];
@@ -143,25 +135,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const addToCart = async (product: CartItem) => {
         // Optimistically update UI
         // Check stock if defined
-        if (product.stock !== undefined && product.quantity > product.stock) {
-            alert(`Sorry, only ${product.stock} items available in stock`);
+        if (product.variant_stock !== undefined && product.quantity > (product.variant_stock || 0)) {
+            alert(`Sorry, only ${product.variant_stock} items available in stock`);
             return;
         }
 
         setItems((prevItems) => {
             const existingItem = prevItems.find((item) =>
                 item.id === product.id &&
-                (item.variantId || null) === (product.variantId || null)
+                (item.variant_id || null) === (product.variant_id || null)
             );
 
             if (existingItem) {
                 const newQuantity = existingItem.quantity + product.quantity;
-                if (product.stock !== undefined && newQuantity > product.stock) {
-                    alert(`Sorry, only ${product.stock} items available in stock`);
+                if (product.variant_stock !== undefined && newQuantity > (product.variant_stock || 0)) {
+                    alert(`Sorry, only ${product.variant_stock} items available in stock`);
                     return prevItems;
                 }
                 return prevItems.map((item) =>
-                    (item.id === product.id && (item.variantId || null) === (product.variantId || null))
+                    (item.id === product.id && (item.variant_id || null) === (product.variant_id || null))
                         ? { ...item, quantity: newQuantity }
                         : item
                 );

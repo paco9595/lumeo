@@ -57,14 +57,15 @@ export async function getCartItems(cartId: string) {
                 id,
                 name,
                 price,
-                image_url,
-                stock
+                stock,
+                product_images (
+                    image_url
+                )
             ),
             product_variants (
                 id,
                 price,
-                stock,
-                image_url
+                stock
             )
         `)
         .eq('cart_id', cartId);
@@ -93,7 +94,7 @@ export async function getCartItems(cartId: string) {
                 name: product.name,
                 // If variant has specific price/image, use it, otherwise fallback to product
                 price: variantData?.price ?? product.price,
-                image: variantData?.image_url ?? product.image_url ?? '/placeholder.jpg',
+                image: variantData?.image_url ?? product.product_images?.[0].image_url ?? '/placeholder.jpg',
                 quantity: item.quantity,
                 stock: variantData?.stock ?? product.stock ?? 0,
                 variantId: item.variant_id,
@@ -108,6 +109,7 @@ export async function getCartItems(cartId: string) {
  * Add or update an item in the cart
  */
 export async function addCartItem(cartId: string, { id, quantity, variantId }: CartItem) {
+    console.log('addCartItem', { cartId, id, quantity, variantId });
     const supabase = await createClient();
 
     // Check if item already exists

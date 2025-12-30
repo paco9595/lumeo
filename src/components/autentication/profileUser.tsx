@@ -1,6 +1,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function ProfileUser({ image, name = 'FP' }: { image?: string, name?: string }) {
@@ -29,8 +30,16 @@ export default function ProfileUser({ image, name = 'FP' }: { image?: string, na
             </div>
             {isOpen && <div className="absolute top-10 right-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
                 <ul className="py-1">
-                    <li className="px-4 py-2 hover:bg-gray-100">Profile</li>
-                    <li className="px-4 py-2 hover:bg-gray-100">Settings</li>
+                    <li className="px-4 py-2 hover:bg-gray-100">
+                        <Link href="/profile">
+                            Profile
+                        </Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-gray-100">
+                        <Link href="/profile">
+                            Settings
+                        </Link>
+                    </li>
                     <li className="px-4 py-2 hover:bg-gray-100" onClick={signOut}>Logout</li>
                 </ul>
             </div>}

@@ -16,25 +16,9 @@ export async function GET() {
         const supabase = await createClient();
 
         const { data: products, error } = await supabase
-            .from('products')
-            .select(`
-                id,
-                name,
-                price,
-                description,
-                image_url,
-                stock,
-                category_id,
-                created_at,
-                updated_at,
-                categories (
-                    id,
-                    name,
-                    slug
-                )
-            `)
-            .order('created_at', { ascending: false });
-
+            .from('product_variants_summary_1')
+            .select(`*, product_variants(*)`)
+        console.log(products);
         if (error) {
             console.error('Error fetching products:', error);
             return NextResponse.json(

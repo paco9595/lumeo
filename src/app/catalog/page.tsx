@@ -1,73 +1,17 @@
 import FilterSidebar from '@/components/catalog/FilterSidebar';
 import ProductGrid from '@/components/catalog/ProductGrid';
+import { getProducts } from '@/lib/products';
 
-const DUMMY_PRODUCTS = [
-  {
-    id: '46062169-4f26-484c-aa8c-afb2b970c58c',
-    name: 'Minimalist Leather Watch',
-    price: 129.99,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Accessories'
-  },
-  {
-    id: '2',
-    name: 'Wireless Noise-Cancelling Headphones',
-    price: 249.99,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Electronics'
-  },
-  {
-    id: '3',
-    name: 'Organic Cotton T-Shirt',
-    price: 29.99,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Clothing'
-  },
-  {
-    id: '4',
-    name: 'Smart Home Speaker',
-    price: 89.99,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Electronics'
-  },
-  {
-    id: '5',
-    name: 'Ceramic Coffee Mug Set',
-    price: 34.99,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Home & Garden'
-  },
-  {
-    id: '6',
-    name: 'Yoga Mat',
-    price: 45.00,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Sports'
-  },
-  {
-    id: '7',
-    name: 'Polarized Sunglasses',
-    price: 159.50,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Accessories'
-  },
-  {
-    id: '8',
-    name: 'Running Shoes',
-    price: 110.00,
-    image: 'https://placehold.co/600x600/png',
-    category: 'Sports'
-  }
-];
 
-export default function CatalogPage() {
+export default async function CatalogPage() {
+  const products = await getProducts()
   return (
     <div className="min-h-screen py-8">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Catalog</h1>
-          <p className="text-gray-600">Discover our curated collection of {DUMMY_PRODUCTS.length} products</p>
+          <p className="text-gray-600">Discover our curated collection of {products?.length} products</p>
         </div>
 
         {/* Unified Container */}
@@ -80,7 +24,7 @@ export default function CatalogPage() {
 
             {/* Main Content Area */}
             <main className="flex-grow">
-              <ProductGrid products={DUMMY_PRODUCTS} />
+              <ProductGrid products={products || []} />
             </main>
           </div>
         </div>

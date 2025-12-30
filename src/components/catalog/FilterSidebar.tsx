@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { getCategories } from '@/lib/cateogires';
 
 export default function FilterSidebar() {
+    const [categories, setCategories] = useState([])
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -20,6 +22,15 @@ export default function FilterSidebar() {
 
     const [sortBy, setSortBy] = useState(searchParams.get('sort') || 'featured');
 
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const categories = await getCategories();
+            console.log({ categories });
+            setCategories(categories);
+        };
+        fetchCategories();
+    }, []);
     // Update URL when filters change
     useEffect(() => {
         const params = new URLSearchParams();
@@ -61,7 +72,7 @@ export default function FilterSidebar() {
             <div className="mb-8">
                 <h3 className="font-medium text-gray-900 mb-4 text-sm uppercase tracking-wider">Categories</h3>
                 <div className="space-y-3">
-                    {['Boxes', 'Buttles', 'Cake Toppers', 'Stickers', 'T-Shirts'].map((category) => (
+                    {categories && categories?.map(({ name: category }: { name: string }) => (
                         <label key={category} className="flex items-center gap-3 cursor-pointer group">
                             <div className="relative flex items-center">
                                 <input

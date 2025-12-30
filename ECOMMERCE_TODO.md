@@ -8,8 +8,8 @@ Este documento contiene todos los puntos pendientes para convertir este proyecto
 
 ### Perfiles de Usuario
 
-- [ ] Crear página de perfil de usuario (`/profile`)
-- [ ] Implementar edición de información personal (nombre, apellido, email)
+- [x] Crear página de perfil de usuario (`/profile`)
+- [x] Implementar edición de información personal (nombre, apellido, email)
 - [ ] Agregar funcionalidad para cambiar/actualizar foto de perfil
 - [ ] Implementar cambio de contraseña
 - [ ] Agregar verificación de email para nuevos usuarios
@@ -32,13 +32,13 @@ Este documento contiene todos los puntos pendientes para convertir este proyecto
 - [x] Agregar funcionalidad para editar productos existentes
 - [x] Implementar eliminación de productos (soft delete)
 - [x] Agregar carga múltiple de imágenes de productos
-- [ ] Implementar sistema de variantes de productos (tallas, colores, etc.)
-- [ ] Agregar gestión de stock por variante
-- [ ] Implementar sistema de SKU único por producto
+- [x] Implementar sistema de variantes de productos (tallas, colores, etc.)
+- [x] Agregar gestión de stock por variante
+- [x] Implementar sistema de SKU único por producto
 
 ### Catálogo de Productos
 
-- [ ] Migrar productos desde array estático a base de datos Supabase
+- [x] Migrar productos desde array estático a base de datos Supabase
 - [ ] Implementar búsqueda de productos con filtros avanzados
 - [ ] Agregar ordenamiento (precio, nombre, fecha, popularidad)
 - [ ] Implementar paginación real con datos de Supabase
@@ -49,7 +49,7 @@ Este documento contiene todos los puntos pendientes para convertir este proyecto
 
 ### Detalles de Producto
 
-- [ ] Agregar selector de variantes funcional (talla, color)
+- [x] Agregar selector de variantes funcional (talla, color)
 - [ ] Implementar galería de imágenes con zoom
 - [ ] Agregar sección de especificaciones técnicas
 - [ ] Implementar sistema de preguntas y respuestas
@@ -65,12 +65,12 @@ Este documento contiene todos los puntos pendientes para convertir este proyecto
 
 - [x] Implementar actualización de cantidad desde el carrito
 - [x] Agregar validación de stock al agregar productos
-- [ ] Implementar persistencia del carrito para usuarios no autenticados (localStorage)
-- [ ] Agregar sincronización automática al iniciar sesión
+- [x] Implementar persistencia del carrito para usuarios no autenticados (localStorage)
+- [x] Agregar sincronización automática al iniciar sesión
 - [x] Implementar eliminación de items del carrito
 - [x] Agregar botón "Vaciar carrito"
-- [ ] Mostrar notificaciones al agregar/eliminar productos
-- [ ] Implementar cálculo de descuentos en el carrito
+- [x] Mostrar notificaciones al agregar/eliminar productos
+- [] Implementar cálculo de descuentos en el carrito
 - [ ] Agregar estimación de tiempo de entrega
 
 ### Selector de Variantes
